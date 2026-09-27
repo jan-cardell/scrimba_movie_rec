@@ -1,4 +1,37 @@
 html, body {
-    margin: 0;
+    margin: 5rem 0 0 0;
     padding: 0;
+}
+
+body {
+    background-color: #000C36;
+    color: white;
+}
+
+
+header, form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form *{
+    width: 20rem;
+    height: 3rem;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0.5rem;
+    background-color: #3B4877;
+    border: none;
+    text-align: center;
+    color: white;
+}
+
+form > button {
+    background-color: #51E08A;
+    color: #000C36;
+}
+
+input::placeholder {
+    color: #000C36;
 }
