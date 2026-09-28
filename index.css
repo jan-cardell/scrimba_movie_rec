@@ -8,7 +8,6 @@ body {
     color: white;
 }
 
-
 header, form {
     display: flex;
     flex-direction: column;
