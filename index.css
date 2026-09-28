@@ -54,3 +54,25 @@ input::placeholder {
     border: none;
     margin-bottom: 1rem;
 }
+
+.radio-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.radio-label {
+    background-color: #3B4877;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.4rem;
+}
+
+.radio-input:checked + .radio-label {
+  background-color: #283152;
+}
+
+.radio-div {
+    display: flex;
+    align-items: flex-start;
+}
