@@ -80,9 +80,17 @@ function render_forms(e) {
             header.innerHTML = `
                 <img src="img/logo.png">`
             formDiv.style.display = 'none'
+
+            // Get recommendations function
+            
         }
 
         individualForm.reset()
 
     })
+}
+
+getReccomendations(favoriteMovieArr, movieAgeArr, filmMoodArr) {
+    // Create search embedding
+    
 }
