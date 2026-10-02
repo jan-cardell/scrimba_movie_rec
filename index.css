@@ -76,3 +76,7 @@ input::placeholder {
     display: flex;
     align-items: flex-start;
 }
+
+#rec-movie-div {
+    display: none;
+}

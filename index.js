@@ -3,6 +3,7 @@ import { openai, supabase } from './config.js';
 const preForm = document.querySelector('#pre-form')
 const header = document.querySelector('header')
 const formDiv = document.getElementById('form-div')
+const recMovieDiv = document.getElementById('rec-movie-div')
 
 preForm.addEventListener('submit', render_forms)
 
@@ -81,7 +82,7 @@ function render_forms(e) {
                 <img src="img/logo.png">`
             formDiv.style.display = 'none'
 
-            // Get recommendations function
+            getReccomendations(favoriteMovieArr, movieAgeArr, filmMoodArr)
             
         }
 
@@ -90,7 +91,25 @@ function render_forms(e) {
     })
 }
 
-function getReccomendations(favoriteMovieArr, movieAgeArr, filmMoodArr) {
+async function getReccomendations(favoriteMovieArr, movieAgeArr, filmMoodArr) {
     // Create search embedding
-    return null
+    const movieString = favoriteMovieArr + movieAgeArr + filmMoodArr
+    console.log(movieString)
+    const embeddingResponse = await openai.embeddings.create({
+        model: "text-embedding-ada-002",
+        input: movieString
+    })
+
+    const embedding = embeddingResponse.data[0].embedding;
+    const { data } = await supabase.rpc('match_documents', {
+        query_embedding: embedding,
+        match_threshold: 0.50,
+        match_count: 1
+    })
+    console.log(data[0].content, data[0].similarity)
+
+    recMovieDiv.style.display = 'flex'
+
+    recMovieDiv.innerText = data[0].content
+
 }

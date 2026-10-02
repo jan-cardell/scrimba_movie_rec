@@ -5,7 +5,7 @@ import movies from "../content.js"
 const openai = new OpenAI({ apiKey: process.env.VITE_OPENAI_API_KEY })
 const supabase = createClient(
   process.env.VITE_SUPABASE_URL,
-  process.env.VITE_SUPABASE_API_KEY
+  process.env.SUPABASE_API_KEY
 )
 
 async function createAndStoreEmbeddings(document) {
