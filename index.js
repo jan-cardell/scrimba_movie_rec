@@ -90,7 +90,7 @@ function render_forms(e) {
     })
 }
 
-getReccomendations(favoriteMovieArr, movieAgeArr, filmMoodArr) {
+function getReccomendations(favoriteMovieArr, movieAgeArr, filmMoodArr) {
     // Create search embedding
-    
+    return null
 }
