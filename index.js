@@ -12,13 +12,14 @@ function render_forms(e) {
     e.preventDefault()
 
     const n = Number(document.getElementById('n').value)
-    let i = 0
+    const watchTime = document.getElementById('watch-time').value
     const favoriteMovieArr = []
     const movieAgeArr = []
     const filmMoodArr = []
-
+    let i = 0
+    
     formDiv.innerHTML = ''
-
+    
     header.innerHTML = `
         <img src="img/logo.png">
         <h1>${i+1}</h1>`
@@ -83,7 +84,7 @@ function render_forms(e) {
                 <img src="img/logo.png">`
             formDiv.style.display = 'none'
 
-            getReccomendations(favoriteMovieArr, movieAgeArr, filmMoodArr)
+            getReccomendations(favoriteMovieArr, movieAgeArr, filmMoodArr, watchTime)
             
         }
 
@@ -92,9 +93,9 @@ function render_forms(e) {
     })
 }
 
-async function getReccomendations(favoriteMovieArr, movieAgeArr, filmMoodArr) {
+async function getReccomendations(favoriteMovieArr, movieAgeArr, filmMoodArr, watchTime) {
     // Create search embedding
-    const movieString = favoriteMovieArr + movieAgeArr + filmMoodArr
+    const movieString = `Similar Movies: ${favoriteMovieArr}, Age: ${movieAgeArr} Moods: ${filmMoodArr} Watchtime: ${watchTime}`
     console.log(movieString)
     const embeddingResponse = await openai.embeddings.create({
         model: "text-embedding-ada-002",
@@ -105,7 +106,7 @@ async function getReccomendations(favoriteMovieArr, movieAgeArr, filmMoodArr) {
     const { data } = await supabase.rpc('match_documents', {
         query_embedding: embedding,
         match_threshold: 0.50,
-        match_count: 10
+        match_count: 20
     })
     console.log(data.length)
 
