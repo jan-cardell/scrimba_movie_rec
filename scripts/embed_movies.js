@@ -11,17 +11,20 @@ const supabase = createClient(
 async function createAndStoreEmbeddings(document) {
 
   for (const { title, releaseYear, content } of document) {
-    const movie = title + releaseYear + content
+    const movie = `Title: ${title}, Release Year: ${releaseYear}, Content: ${content}`
     const embeddingResponse = await openai.embeddings.create({
         model: "text-embedding-ada-002",
         input: movie
       })
     const data = {
-      movie_description: movie,
+      movie_title: title,
+      movie_releaseYear: releaseYear,
+      movie_description: content,
       movie_embedding: embeddingResponse.data[0].embedding
     }
     const { error } = await supabase.from('movie_embeddings_v1').insert(data)
     if (error) console.error(error)
+    console.log(title)
   }
   console.log('SUCCESS!');
 }

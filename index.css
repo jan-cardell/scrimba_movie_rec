@@ -14,7 +14,7 @@ header, form {
     align-items: center;
 }
 
-.pre-form-input{
+.pre-form-input {
     width: 20rem;
     height: 3rem;
     box-sizing: border-box;
@@ -26,7 +26,7 @@ header, form {
     color: white;
 }
 
-form > button {
+form > button, #next-movie-btn {
     width: 20rem;
     height: 3rem;
     margin: 0.5rem;
@@ -79,4 +79,17 @@ input::placeholder {
 
 #rec-movie-div {
     display: none;
+    margin: 0 25rem 0 25rem;
+    flex-direction: column;
+    align-items: center;
+}
+
+#next-movie-btn {
+    display: none;
+    position: fixed;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center;
 }

@@ -4,6 +4,7 @@ const preForm = document.querySelector('#pre-form')
 const header = document.querySelector('header')
 const formDiv = document.getElementById('form-div')
 const recMovieDiv = document.getElementById('rec-movie-div')
+const nextMovieBtn = document.getElementById('next-movie-btn')
 
 preForm.addEventListener('submit', render_forms)
 
@@ -104,12 +105,33 @@ async function getReccomendations(favoriteMovieArr, movieAgeArr, filmMoodArr) {
     const { data } = await supabase.rpc('match_documents', {
         query_embedding: embedding,
         match_threshold: 0.50,
-        match_count: 1
+        match_count: 10
     })
-    console.log(data[0].content, data[0].similarity)
+    console.log(data.length)
 
     recMovieDiv.style.display = 'flex'
+    nextMovieBtn.style.display = 'flex'
 
-    recMovieDiv.innerText = data[0].content
+    let i = 0
 
+    recMovieDiv.innerHTML = `
+    <h2>${data[i].title} (${data[i].releaseyear})</h2>
+    <p>${data[i].content}</p>
+    <p>This movie matches your interests by ${Math.round(Number(data[i].similarity)*100)}%</p>
+    <button id='next-movie-btn'>Next Movie</button>
+    `
+    
+    nextMovieBtn.addEventListener('click', function(){
+        i ++
+        if (i < data.length){
+            recMovieDiv.innerHTML = `
+            <h2>${data[i].title} (${data[i].releaseyear})</h2>
+            <p>${data[i].content}</p>
+            <p>This movie matches your interests by ${Math.round(Number(data[i].similarity)*100)}%</p>
+            <button id='next-movie-btn'>Next Movie</button>
+            `
+        } else {
+            nextMovieBtn.style.display = 'none'
+        }
+    })
 }
