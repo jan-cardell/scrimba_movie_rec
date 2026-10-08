@@ -21,7 +21,7 @@ function render_forms(e) {
     formDiv.innerHTML = ''
     
     header.innerHTML = `
-        <img src="img/logo.png">
+        <img src="/img/logo.png">
         <h1>${i+1}</h1>`
     
     formDiv.innerHTML = `
@@ -55,7 +55,7 @@ function render_forms(e) {
         e.preventDefault()
         i++
         header.innerHTML = `
-            <img src="img/logo.png">
+            <img src="/img/logo.png">
             <h1>${i+1}</h1>`
 
         const favoriteMovie = document.getElementById('favorite-movie').value
@@ -81,7 +81,7 @@ function render_forms(e) {
 
         if (i === n) {
             header.innerHTML = `
-                <img src="img/logo.png">`
+                <img src="/img/logo.png">`
             formDiv.style.display = 'none'
 
             getReccomendations(favoriteMovieArr, movieAgeArr, filmMoodArr, watchTime)
