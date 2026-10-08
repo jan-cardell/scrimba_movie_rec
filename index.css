@@ -6,6 +6,7 @@ html, body {
 body {
     background-color: #000C36;
     color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
 header, form {
@@ -14,16 +15,30 @@ header, form {
     align-items: center;
 }
 
+.pre-form-input,
+#favorite-movie {
+    font-family: inherit;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background-color: #3B4877;
+    border: none;
+    border-radius: 0.5rem;
+    color: white;
+    transition: box-shadow 0.15s ease;
+}
+
+.pre-form-input:focus,
+#favorite-movie:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #51E08A;
+}
+
 .pre-form-input {
     width: 20rem;
     height: 3rem;
-    box-sizing: border-box;
-    padding: 0;
+    padding: 0 1rem;
     margin: 0.5rem;
-    background-color: #3B4877;
-    border: none;
     text-align: center;
-    color: white;
 }
 
 form > button, #next-movie-btn {
@@ -31,11 +46,21 @@ form > button, #next-movie-btn {
     height: 3rem;
     margin: 0.5rem;
     border: none;
+    border-radius: 0.5rem;
     background-color: #51E08A;
     color: #000C36;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
 }
 
-input::placeholder {
+form > button:hover, #next-movie-btn:hover {
+    background-color: #6CF0A2;
+}
+
+input::placeholder, textarea::placeholder {
     color: #000C36;
 }
 
@@ -50,9 +75,11 @@ input::placeholder {
 #favorite-movie {
     width: 20rem;
     height: 5rem;
-    background-color: #3B4877;
-    border: none;
+    padding: 0.75rem 1rem;
     margin-bottom: 1rem;
+    text-align: left;
+    line-height: 1.4;
+    resize: vertical;
 }
 
 .radio-input {
@@ -66,6 +93,12 @@ input::placeholder {
     background-color: #3B4877;
     padding: 0.3rem 0.5rem;
     border-radius: 0.4rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.radio-label:hover {
+    background-color: #4A5A91;
 }
 
 .radio-input:checked + .radio-label {
@@ -75,6 +108,9 @@ input::placeholder {
 .radio-div {
     display: flex;
     align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 #rec-movie-div {
