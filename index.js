@@ -27,7 +27,7 @@ function render_forms(e) {
     formDiv.innerHTML = `
             <form id="individual-form">
                 <label class="individual-input-label">What’s your favorite movie and why?</label>
-                <input type="text" placeholder="" id="favorite-movie">
+                <textarea id="favorite-movie"></textarea>
                 <label for="film-age" class="individual-input-label">Are you in the mood for something new or a classic?</label>
                 <div id='film-age' class='radio-div'>
                         <input type="radio" name="film-age" id="classic" value="classic" class="radio-input">
@@ -47,7 +47,7 @@ function render_forms(e) {
                         <label for="scary" class="radio-label">Scary</label>
                 </div>
             
-                <button id='next-person-btn'>Next Person</button>
+                <button id='next-person-btn'>${n === 1 ? 'Get Movie' : 'Next Person'}</button>
             </form>
     `
     const individualForm = document.querySelector('#individual-form')
