@@ -1,4 +1,4 @@
-import { openai, supabase } from './config.js';
+import { supabase } from './config.js';
 
 const preForm = document.querySelector('#pre-form')
 const header = document.querySelector('header')
@@ -97,12 +97,12 @@ async function getReccomendations(favoriteMovieArr, movieAgeArr, filmMoodArr, wa
     // Create search embedding
     const movieString = `Similar Movies: ${favoriteMovieArr}, Age: ${movieAgeArr} Moods: ${filmMoodArr} Watchtime: ${watchTime}`
     console.log(movieString)
-    const embeddingResponse = await openai.embeddings.create({
-        model: "text-embedding-ada-002",
-        input: movieString
+    const embeddingResponse = await fetch('/.netlify/functions/embed', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ input: movieString })
     })
-
-    const embedding = embeddingResponse.data[0].embedding;
+    const { embedding } = await embeddingResponse.json();
     const { data } = await supabase.rpc('match_documents', {
         query_embedding: embedding,
         match_threshold: 0.50,
